@@ -1,6 +1,6 @@
-import firebase from "firebase";
-import "firebase/auth"
-import "firebase/database"
+import * as firebase from "firebase";
+import "firebase/auth";
+import "firebase/database";
 var firebaseConfig = {
   apiKey: "AIzaSyBlWoLE-QGKELysbNZrt3mqdO5QNK91RLg",
   authDomain: "crud-firebase-b9b4f.firebaseapp.com",
@@ -11,5 +11,5 @@ var firebaseConfig = {
   appId: "1:569161158910:web:d6da8a9af918031e04d5af",
 };
 
-const Firebase = firebase.initializeApp(firebaseConfig)
-export default Firebase
+const Firebase = firebase.initializeApp(firebaseConfig);
+export default Firebase;
