@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import moment from "moment";
+import { connect } from "react-redux";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -11,31 +11,10 @@ import AddIcon from "@material-ui/icons/Add";
 import AppTable from "../../components/AppTable";
 import AppForm from "../../components/AppForm";
 import { green } from "@material-ui/core/colors";
-
-import { DATE_FORMATS } from "../../../utils/constants";
-export default class UserPage extends Component {
-  //   userService = new UserService();
+class UserPage extends Component {
   state = {
     showForm: false,
-    dataEdit: null,
-    users: [
-      {
-        id: 1,
-        username: "edw",
-        email: "ebustos@gmail.com",
-        gender: "Male",
-        birth: moment().format(DATE_FORMATS.default),
-      },
-      {
-        id: 2,
-        username: "nata",
-        email: "nata@gmail.com",
-        gender: "Female",
-        birth: moment().format(DATE_FORMATS.default),
-      },
-    ],
   };
-
   onSave = (user) => {
     let users = this.state.users;
     user.birth = new Date().toDateString();
@@ -55,7 +34,9 @@ export default class UserPage extends Component {
   };
 
   render() {
-    const { users, showForm } = this.state;
+    const { users } = this.props;
+    console.log(users);
+    const { showForm } = this.state;
     const fields = [
       { label: "Username", name: "username", type: "text" },
       { label: "Email", name: "email", type: "email" },
@@ -104,3 +85,10 @@ export default class UserPage extends Component {
     );
   }
 }
+
+const mapState = (state) => {
+  console.log(state);
+  return { users: state.content.items };
+};
+
+export default connect(mapState)(UserPage);

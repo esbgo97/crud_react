@@ -26,6 +26,10 @@ export default class AppForm extends Component {
     this.setState({ dataForm });
   };
 
+  onAccept = (event) => {
+    console.log(event);
+  };
+
   render() {
     const {
       title,
@@ -33,42 +37,44 @@ export default class AppForm extends Component {
       fields,
       maxWidth,
       show,
-      onAccept,
       onCancel,
     } = this.props;
 
-    const { dataForm } = this.state;
-
     return (
-      <Dialog
-        open={show}
-        onClose={this.onShowModal}
-        maxWidth={maxWidth ?? "lg"}
-      >
-        <DialogTitle>{title}</DialogTitle>
+      <form autoComplete="off" onSubmit={this.onAccept}>
+        <Dialog
+          open={show}
+          onClose={this.onShowModal}
+          maxWidth={maxWidth ?? "lg"}
+        >
+          <DialogTitle>{title}</DialogTitle>
 
-        <DialogContent>
-          {description && <DialogContentText>{description}</DialogContentText>}
-          {fields.map((field, i) => (
-            <div key={i}>
-              {this.renderField(field, i)}
-              <br />
-            </div>
-          ))}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => onAccept(dataForm)} color="primary">
-            ACCEPT
-          </Button>
-          <Button onClick={onCancel} color="secondary">
-            CANCEL
-          </Button>
-        </DialogActions>
-      </Dialog>
+          <DialogContent>
+            {description && (
+              <DialogContentText>{description}</DialogContentText>
+            )}
+            {fields.map((field, i) => (
+              <div key={i}>
+                {this.renderField(field, i)}
+                <br />
+              </div>
+            ))}
+          </DialogContent>
+          <DialogActions>
+            <Button type="submit" color="primary">
+              ACCEPT
+            </Button>
+            <Button type="button" onClick={onCancel} color="secondary">
+              CANCEL
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </form>
     );
   }
 
   renderField = (field) => {
+    const { dataForm } = this.state;
     switch (field.type) {
       case "text":
       case "email":
@@ -78,7 +84,10 @@ export default class AppForm extends Component {
             label={field.label}
             name={field.name}
             type={field.type}
+            value={dataForm[field.name] ?? ""}
             onChange={(ev) => this.onChangeInput(field.name, ev.target.value)}
+            autoComplete="off"
+            required
             fullWidth
           />
         );
@@ -89,7 +98,9 @@ export default class AppForm extends Component {
               label={field.label}
               name={field.name}
               showTodayButton
+              value={dataForm[field.name] ?? null}
               fullWidth
+              required
               onChange={(val) => this.onChangeInput(field.name, val)}
             />
           </MuiPickersUtilsProvider>
@@ -102,8 +113,12 @@ export default class AppForm extends Component {
               labelId={"slt" + field.name}
               name={field.name}
               onChange={(ev) => this.onChangeInput(field.name, ev.target.value)}
-              value={field.options[0]}
+              value={dataForm[field.name] ?? -1}
+              required
             >
+              <MenuItem value={-1} key={-1}>
+                -- Choose One
+              </MenuItem>
               {field.options.map((opt) => (
                 <MenuItem value={opt} key={opt}>
                   {opt}

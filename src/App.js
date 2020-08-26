@@ -1,16 +1,10 @@
 import React from "react";
+import AppRouter from './ui/partials/AppRouter'
+
 import "./App.css";
-import { Header } from "./ui/partials";
-import UserPage from "./ui/pages/user/UserPage";
 
 function App() {
-  return (
-    <div>
-      <Header />
-      <br />
-      <UserPage />
-    </div>
-  );
+  return <AppRouter />;
 }
 
 export default App;

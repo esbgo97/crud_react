@@ -1,15 +1,16 @@
 import * as firebase from "firebase";
 import "firebase/auth";
 import "firebase/database";
-var firebaseConfig = {
-  apiKey: "AIzaSyBlWoLE-QGKELysbNZrt3mqdO5QNK91RLg",
-  authDomain: "crud-firebase-b9b4f.firebaseapp.com",
-  databaseURL: "https://crud-firebase-b9b4f.firebaseio.com",
-  projectId: "crud-firebase-b9b4f",
-  storageBucket: "crud-firebase-b9b4f.appspot.com",
-  messagingSenderId: "569161158910",
-  appId: "1:569161158910:web:d6da8a9af918031e04d5af",
-};
 
+var firebaseConfig = {
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_API_KEY,
+  databaseURL: process.env.REACT_APP_API_KEY,
+  projectId: process.env.REACT_APP_API_KEY,
+  storageBucket: process.env.REACT_APP_API_KEY,
+  messagingSenderId: process.env.REACT_APP_API_KEY,
+  appId: process.env.REACT_APP_API_KEY,
+};
+console.log(firebaseConfig);
 const Firebase = firebase.initializeApp(firebaseConfig);
 export default Firebase;
