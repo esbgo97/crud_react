@@ -8,7 +8,7 @@ const HomePage = () => {
       <Typography variant="h2">React Demo App</Typography>
       <Typography variant="subtitle1">
         By{" "}
-        <a target="_blank" href="https://github.com/esbgo97">
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/esbgo97">
           @Esbgo97
         </a>
       </Typography>
@@ -22,19 +22,19 @@ const HomePage = () => {
       <Typography variant="h5">Packages</Typography>
       <ul>
         <li>
-          <a href="https://es.redux.js.org/">Redux</a>
+          <a href="https://es.redux.js.org/" rel="noopener noreferrer">Redux</a>
         </li>
         <li>
-          <a href="https://reactrouter.com/">Router</a>
+          <a href="https://reactrouter.com/" rel="noopener noreferrer">Router</a>
         </li>
         <li>
-          <a href="https://material-ui.com/">Material UI</a>
+          <a href="https://material-ui.com/" rel="noopener noreferrer">Material UI</a>
         </li>
         <li>
-          <a href="https://momentjs.com/">Moment</a>
+          <a href="https://momentjs.com/" rel="noopener noreferrer">Moment</a>
         </li>
         <li>
-          <a href="https://www.firebase.com/">Firebase</a>
+          <a href="https://www.firebase.com/" rel="noopener noreferrer">Firebase</a>
         </li>
       </ul>
 
